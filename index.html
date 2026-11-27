@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light" data-palette="sunset">
+<html lang="en" data-theme="light" data-palette="harvest">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,7 @@
   <meta name="author" content="Eunice">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://workwitheunice.vercel.app/">
-  <meta name="theme-color" content="#f7ecd6">
+  <meta name="theme-color" content="#f3e8cc">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 
@@ -73,9 +73,8 @@
       var d = document.documentElement;
       try {
         var t = localStorage.getItem("eo-theme");
-        var p = localStorage.getItem("eo-palette");
         d.dataset.theme = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        d.dataset.palette = p || "sunset";
+        d.dataset.palette = "harvest";   // one palette only: Harvest Market
       } catch (e) {}
     })();
   </script>
@@ -231,7 +230,8 @@
     .nav .cta { background: var(--ink); color: var(--bg); }
     .nav .cta:hover { background: var(--accent); color: #fff; }
     .nav svg.i { width: 16px; height: 16px; }
-    @media (max-width: 560px) { .nav a { padding: 8px 11px; font-size: 13.5px; } .nav .logo { width: 36px; height: 36px; } .nav svg.i, .nav .hide-sm { display: none; } }
+    @media (max-width: 560px) { .nav a { padding: 8px 10px; font-size: 13.5px; } .nav .logo { width: 36px; height: 36px; } .nav svg.i, .nav .hide-sm { display: none; } }
+    @media (max-width: 400px) { .nav a { padding: 7px 8px; font-size: 13px; } .nav .logo { width: 32px; height: 32px; } }
 
     /* Palette dock */
     .dock {
@@ -286,6 +286,8 @@
       outline: .03em solid color-mix(in srgb, var(--accent) 75%, #000); outline-offset: -.03em;
       transition: transform .4s var(--ease);
     }
+    .sky-slot { position: relative; display: inline-block; width: 1.66em; height: .74em; vertical-align: -.03em; }
+    .sky-slot > .sky { position: absolute; left: .03em; top: 0; margin: 0; vertical-align: top; }
     .sky:hover { transform: scale(1.03); }
     .sky:active { transform: scale(.97); }
     .sky > * { position: absolute; pointer-events: none; }
@@ -509,6 +511,27 @@
     .node:hover .g .g-s { stroke-dasharray: 100; animation: draw 1.3s var(--ease); }
 
     /* ================================ EXPERIENCE ================================ */
+    @media (max-width: 639px) {
+      /* Phones: same content, less scrolling */
+      .case-vis { display: none; }
+      .case-body { gap: 14px; }
+      .m-hide { display: none !important; }
+      .m-swipe { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 40px -16px 0 !important; padding: 4px 16px 12px; scrollbar-width: none; }
+      .m-swipe::-webkit-scrollbar { display: none; }
+      .m-swipe > * { flex: 0 0 80%; scroll-snap-align: start; }
+      .portrait-stage { width: min(100%, 300px); }
+      #about, #experience, #tools, #work { padding-top: 64px !important; padding-bottom: 40px !important; }
+      #about > .grid { gap: 32px; }
+      .xp { padding: 16px 0 !important; }
+      .xp > :nth-child(3) { display: none; }
+      .sw-panel:not([hidden]) { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin: 0 -16px; padding: 0 16px 10px; scrollbar-width: none; align-items: flex-start; }
+      .sw-panel::-webkit-scrollbar { display: none; }
+      .sw-panel > .gal-item { flex: 0 0 64%; scroll-snap-align: start; }
+      .sw-panel > .gal-wide, .sw-writing > .gal-item, .sw-graphics > .gal-item:first-child, .sw-graphics > .gal-item:last-child { flex-basis: 86%; }
+      .sw-hint { display: block !important; }
+      #tools .grid-cols-2 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      #tools .grid-cols-2 > * { padding: 12px 10px; }
+    }
     .xp { display: grid; grid-template-columns: 1fr; gap: 6px 28px; padding: 26px 0; border-top: 1px solid var(--line); position: relative; isolation: isolate; }
     @media (min-width: 900px) { .xp { grid-template-columns: 200px 1fr 260px; align-items: start; } }
     .xp::before { content: ""; position: absolute; inset: 0 -18px; z-index: -1; border-radius: 18px; background: color-mix(in srgb, var(--accent) 8%, transparent); transform: scaleY(0); transform-origin: top; transition: transform .5s var(--ease); }
@@ -566,17 +589,10 @@
     <a href="#top" class="logo" aria-label="Back to top"><svg data-glyph="unity"></svg></a>
     <a href="#work"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h6l2 2h10v10H3z"/></svg>Work</a>
     <a href="#about"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0M9 10h.01M15 10h.01"/></svg>About</a>
-    <a href="./resume.pdf" target="_blank" rel="noopener" class="hide-sm"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6zM14 3v4h4"/></svg>Résumé</a>
+    <a href="./resume.pdf" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6zM14 3v4h4"/></svg>Résumé</a>
     <a href="mailto:nmesomaokogwu@gmail.com?subject=Hello%20Eunice" class="cta">Say hello</a>
   </nav>
 
-  <!-- Palette dock: try the three earthy palettes live -->
-  <div class="dock" role="group" aria-label="Colour palette">
-    <span class="lbl">Pick a mood</span>
-    <button type="button" data-pal="canopy" title="Rusty Canopy" aria-label="Rusty Canopy palette"><i style="background:#a3431d"></i><i style="background:#626b2d"></i><i style="background:#bfab72"></i></button>
-    <button type="button" data-pal="sunset" title="Savanna Sunset" aria-label="Savanna Sunset palette"><i style="background:#d85512"></i><i style="background:#e5c263"></i><i style="background:#883418"></i></button>
-    <button type="button" data-pal="harvest" title="Harvest Market" aria-label="Harvest Market palette"><i style="background:#18542a"></i><i style="background:#f96015"></i><i style="background:#ffc926"></i></button>
-  </div>
 
   <main>
     <!-- ================================ HERO ================================ -->
@@ -592,13 +608,13 @@
 
         <h1 class="headline" aria-label="Strategy and Social Media">
           <span class="ln"><span data-collide>Strategy</span></span>
-          <span class="ln"><span data-collide>&amp; S<button class="sky" id="themeToggle" role="switch" aria-checked="false" aria-label="Dark mode">
+          <span class="ln"><span data-collide>&amp; S<span class="sky-slot"><button class="sky" id="themeToggle" role="switch" aria-checked="false" aria-label="Dark mode">
                 <span class="day"></span><span class="night"></span>
                 <span class="stars"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></span>
                 <span class="clouds"><i class="c1"></i><i class="c2"></i></span>
                 <span class="hills"><svg viewBox="0 0 160 30" preserveAspectRatio="none"><path d="M0 18 Q30 4 62 16 T120 12 T160 14 V30 H0Z" fill="var(--hill-1)"/><path d="M0 26 Q40 12 86 24 T160 20 V30 H0Z" fill="var(--hill-2)"/></svg></span>
                 <span class="orb"><span class="rays"></span><i class="cr"></i><i class="cr"></i><i class="cr"></i></span>
-              </button>cial</span></span>
+              </button></span>cial</span></span>
           <span class="ln"><span data-collide>Media</span></span>
         </h1>
 
@@ -655,7 +671,7 @@
             Send me the half-formed idea from your 2 a.m. voice note. I’ll turn it into <em>content strategy</em>,
             <em>social media that grows</em> and <em>writing that sells</em>, then show you the numbers.
           </p>
-          <div class="grid sm:grid-cols-3 gap-6 mt-10">
+          <div class="m-hide grid sm:grid-cols-3 gap-6 mt-10">
             <div class="reveal" data-d="1"><svg data-glyph="comm" class="w-9 h-9 mb-3" style="color:var(--accent)"></svg><p class="font-display text-lg leading-tight">Plotting &amp; Planning</p><p class="text-sm muted mt-1">Content Strategy, Social Media Management</p></div>
             <div class="reveal" data-d="2"><svg data-glyph="together" class="w-9 h-9 mb-3" style="color:var(--accent)"></svg><p class="font-display text-lg leading-tight">Making Things Move</p><p class="text-sm muted mt-1">Video Editing &amp; Animation, Voice Engineering</p></div>
             <div class="reveal" data-d="3"><svg data-glyph="write" class="w-9 h-9 mb-3" style="color:var(--accent)"></svg><p class="font-display text-lg leading-tight">Words That Sell</p><p class="text-sm muted mt-1">Conversion Writing, UX &amp; Content Writing</p></div>
@@ -782,6 +798,7 @@
             <button type="button" role="tab" class="sw-tab" aria-selected="false" data-cat="graphics">Graphics <i>7</i></button>
           </div>
         </div>
+        <p class="sw-hint muted text-xs mb-3" style="display:none">Swipe to see more →</p>
         <div class="sw-panel sw-videos" data-cat="videos" role="tabpanel">
           
           <figure class="gal-item"><div class="gal-frame" style="aspect-ratio:9/16"><video controls preload="none" playsinline poster="./assets/work/ferri-motion-poster.jpg" aria-label="Ferri delivery app motion graphic"><source src="./assets/work/ferri-motion.mp4" type="video/mp4"></video></div><figcaption class="gal-cap"><b>Ferri</b><span>Motion graphics · Delivery app ad (concept)</span></figcaption></figure>
@@ -854,7 +871,7 @@
       </div>
 
       <!-- Values: Nsibidi hover nodes -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-24">
+      <div class="m-swipe grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-24">
         <div class="node tilt flip"><svg data-glyph="comm" class="g"></svg><p class="eyebrow mt-6">Strategy</p><h3 class="font-display text-2xl mt-2">Plan before you post</h3><p class="text-sm muted mt-2">Every post has a job, and I know what it is before anything goes live.</p></div>
         <div class="node tilt flip" data-d="1"><svg data-glyph="write" class="g"></svg><p class="eyebrow mt-6">Writing</p><h3 class="font-display text-2xl mt-2">Words that sell</h3><p class="text-sm muted mt-2">Captions, emails and pages written for the person reading, so they keep reading.</p></div>
         <div class="node tilt flip" data-d="2"><svg data-glyph="together" class="g"></svg><p class="eyebrow mt-6">Social</p><h3 class="font-display text-2xl mt-2">Show up like you mean it</h3><p class="text-sm muted mt-2">Channels that feel like a conversation, with a solid calendar behind them.</p></div>
@@ -1046,14 +1063,6 @@
       });
     });
 
-    /* ---------------- Palette dock ---------------- */
-    const palBtns = document.querySelectorAll("[data-pal]");
-    const syncPal = () => palBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pal === root.dataset.palette)));
-    syncPal();
-    palBtns.forEach(b => b.addEventListener("click", () => {
-      const apply = () => { root.dataset.palette = b.dataset.pal; save("eo-palette", b.dataset.pal); syncPal(); inkPills(); };
-      document.startViewTransition && !reduce ? document.startViewTransition(apply) : apply();
-    }));
 
     /* ---------------- Smooth scroll ---------------- */
     let lenis = null;
